@@ -1,0 +1,346 @@
+html,
+body {
+    height: 100%;
+    margin:0;
+    padding:0;
+    font-family: 'Poppins', sans-serif;
+}
+.myheader{
+    padding-top: 30px;
+}
+.mysec{
+    margin-top: 65px;
+}
+.myqr{
+  /* padding: 3rem 1.5rem; */
+  text-align: center;
+}
+.form-control {
+    border: 0;
+    border-radius: 5px;
+    --shadow: 0 2px 8px -1px rgba(39, 94, 254, 0.32);
+    box-shadow: var(--shadow);
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+h4{
+    font-size: 332px;
+    position: absolute;
+    top: -54px;
+    font-weight: 900;
+    left: -65px;
+    z-index: -1;
+    color: #000;
+    opacity: .1;
+}
+
+/* button */
+.button {
+    --background: #275efe;
+    --text: #fff;
+    --font-size: 16px;
+    --duration: .44s;
+    --move-hover: -4px;
+    --shadow: 0 2px 8px -1px rgba(39, 94, 254, 0.32);
+    --shadow-hover: 0 4px 20px -2px rgba(39, 94, 254, 0.5);
+    --font-shadow: var(--font-size);
+    padding: 13.5px 18px;
+    font-family: 'Roboto';
+    font-weight: 500;
+    line-height: var(--font-size);
+    border-radius: 5px;
+    display: block;
+    outline: none;
+    text-decoration: none;
+    font-size: var(--font-size);
+    letter-spacing: .5px;
+    background: var(--background);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    -webkit-transform: translateY(var(--y));
+            transform: translateY(var(--y));
+    -webkit-transition: box-shadow var(--duration) ease, -webkit-transform var(--duration) ease;
+    transition: box-shadow var(--duration) ease, -webkit-transform var(--duration) ease;
+    transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+    transition: transform var(--duration) ease, box-shadow var(--duration) ease, -webkit-transform var(--duration) ease;
+  }
+  .button div {
+    display: -webkit-box;
+    display: flex;
+    overflow: hidden;
+    text-shadow: 0 var(--font-shadow) 0 var(--text);
+  }
+  .button div span {
+    display: block;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+    font-style: normal;
+    -webkit-transition: -webkit-transform var(--duration) ease;
+    transition: -webkit-transform var(--duration) ease;
+    transition: transform var(--duration) ease;
+    transition: transform var(--duration) ease, -webkit-transform var(--duration) ease;
+    -webkit-transform: translateY(var(--m));
+            transform: translateY(var(--m));
+  }
+  .button div span:nth-child(1) {
+    -webkit-transition-delay: 0.05s;
+            transition-delay: 0.05s;
+  }
+  .button div span:nth-child(2) {
+    -webkit-transition-delay: 0.1s;
+            transition-delay: 0.1s;
+  }
+  .button div span:nth-child(3) {
+    -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+  }
+  .button div span:nth-child(4) {
+    -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+  }
+  .button div span:nth-child(5) {
+    -webkit-transition-delay: 0.25s;
+            transition-delay: 0.25s;
+  }
+  .button div span:nth-child(6) {
+    -webkit-transition-delay: 0.3s;
+            transition-delay: 0.3s;
+  }
+  .button div span:nth-child(7) {
+    -webkit-transition-delay: 0.35s;
+            transition-delay: 0.35s;
+  }
+  .button div span:nth-child(8) {
+    -webkit-transition-delay: 0.4s;
+            transition-delay: 0.4s;
+  }
+  .button div span:nth-child(9) {
+    -webkit-transition-delay: 0.45s;
+            transition-delay: 0.45s;
+  }
+  .button div span:nth-child(10) {
+    -webkit-transition-delay: 0.5s;
+            transition-delay: 0.5s;
+  }
+  .button div span:nth-child(11) {
+    -webkit-transition-delay: 0.55s;
+            transition-delay: 0.55s;
+  }
+  .button:hover {
+    --y: var(--move-hover);
+    --shadow: var(--shadow-hover);
+  }
+  .button:hover span {
+    --m: calc(var(--font-size) * -1);
+  }
+.qr{
+  --background: #275efe;
+  --text: #fff;
+  --icon: #fff;
+  --icon-success: #16BF78;
+  --shadow: 0 2px 8px -1px rgba(33, 33, 37, 0.32);
+  margin:30px;
+  display: -webkit-box;
+  display: flex;
+  outline: none;
+  border: 0;
+  padding: auto;
+  min-width: 147px;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 9px;
+  background: var(--background); 
+  box-shadow: var(--shadow);
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s; 
+}
+/* DELETE */
+.button1 {
+  --background: #275efe;
+  --text: #fff;
+  --icon: #fff;
+  --icon-success: #16BF78;
+  display: -webkit-box;
+  display: flex;
+  outline: none;
+  border: 0;
+  padding: 0 22px 0 16px;
+  min-width: 147px;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 9px;
+  background: var(--background);
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+}
+.button1:active {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+.button1 ul {
+  margin: 0;
+  padding: 13px 0;
+  list-style: none;
+  text-align: center;
+  position: relative;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  color: var(--text);
+}
+.button1 ul li:not(:first-child) {
+  top: var(--t, 13px);
+  left: 0;
+  position: absolute;
+}
+.button1 ul li:nth-child(2) {
+  --t: 64px;
+}
+.button1 ul li:nth-child(3) {
+  --t: 115px;
+}
+.button1 .icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin: 14px 10px 0 0;
+  -webkit-transform: translateY(calc(var(--y, 0) * 1px));
+          transform: translateY(calc(var(--y, 0) * 1px));
+}
+.button1 .icon svg {
+  width: var(--w, 14px);
+  height: var(--h, 15px);
+  display: block;
+  fill: none;
+  stroke: var(--s, var(--icon));
+  stroke-width: var(--sw, 2);
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.button1 .icon > svg,
+.button1 .icon div {
+  left: var(--l, 7px);
+  top: var(--t, 2px);
+  position: absolute;
+}
+.button1 .icon > svg {
+  -webkit-transform: translateY(calc(var(--y, 0) * 1px));
+          transform: translateY(calc(var(--y, 0) * 1px));
+}
+.button1 .icon > svg polyline,
+.button1 .icon > svg line {
+  stroke-dasharray: var(--a, 12px);
+  stroke-dashoffset: var(--o, 0);
+  stroke: var(--s, var(--icon));
+  -webkit-transition: stroke-dashoffset var(--d, 0.15s), stroke 0.4s;
+  transition: stroke-dashoffset var(--d, 0.15s), stroke 0.4s;
+}
+.button1 .icon > svg polyline {
+  --d: .25s;
+  --a: 17px;
+  --o: 5.5px;
+}
+.button1 .icon div {
+  --w: 24px;
+  --h: 24px;
+  --l: 0;
+  --t: 8px;
+  --sw: 1.5;
+}
+.button1.loading ul {
+  -webkit-animation: text 1750ms linear forwards 100ms;
+          animation: text 1750ms linear forwards 100ms;
+}
+.button1.loading.complete .icon svg line {
+  --o: 12px;
+}
+.button1.loading.complete .icon svg polyline {
+  --o: 0;
+  --s: var(--icon-success);
+}
+
+@-webkit-keyframes text {
+  18%,
+    82% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(-200%);
+            transform: translateY(-200%);
+  }
+}
+
+@keyframes text {
+  18%,
+    82% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(-200%);
+            transform: translateY(-200%);
+  }
+}
+.download {
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+/* html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+}
+*:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+body .dribbble {
+  position: fixed;
+  display: block;
+  right: 20px;
+  bottom: 20px;
+}
+body .dribbble img {
+  display: block;
+  height: 28px;
+}
+body .twitter {
+  position: fixed;
+  display: block;
+  right: 64px;
+  bottom: 14px;
+}
+body .twitter svg {
+  width: 32px;
+  height: 32px;
+  fill: #1da1f2;
+} */

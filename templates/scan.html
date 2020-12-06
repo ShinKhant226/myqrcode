@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <!-- <link rel="stylesheet" href="button/style.css"> -->
+</head>
+<body class="container">
+    <header class="myheader">
+        <nav class="navbar navbar-light bg-white">
+            <a class="navbar-brand" href="/">
+              <img src="{{ url_for('static',filename='logo.png') }}" width="60" height="60" alt="">
+            </a>
+            <div type="submit" onclick="document.getElementById('create').click()" class="button">Create QR</div>
+            <a id="create" href="/" hidden></a>
+          </nav>
+    </header>
+    <div class="myqr container align-items-center" id="container">
+        <video autoplay="true" id="videoElement">      
+        </video>
+    </div>
+    <footer class="footer text-center">
+        <div class="container" style=" padding-top: 60px;">
+          <span class="text-muted">developed by <a href="">@shinkhantmaung</a></span>
+        </div>
+      </footer>
+</body>
+    <script src="{{ url_for('static',filename='button/script.js') }}"></script>
+    <!-- <script src="button1/script.js"></script> -->
+    <script>
+        var video = document.querySelector("#videoElement");
+
+        if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+            video.srcObject = stream;
+            })
+            .catch(function (err0r) {
+            console.log("Something went wrong!");
+            });
+        }
+    </script>
+</html>

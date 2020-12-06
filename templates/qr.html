@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <!-- <link rel="stylesheet" href="button/style.css"> -->
+</head>
+<body class="container" onload="myFunction()">
+    <div id="loader" class="myheader myqr container align-items-center">
+        <div  style="padding-top:100px;">
+            <img src="{{ url_for('static',filename='loading.gif') }}" alt="loading" width="400">
+        </div>      
+    </div>
+    <div style="display:none;" id="myDiv" >
+        <header class="myheader">
+            <nav class="navbar navbar-light bg-white">
+                <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static',filename='logo.png') }}" width="60" height="60" alt="">
+                </a>
+                <div type="submit" onclick="document.getElementById('scan').click()" class="button" style="background: #333; --shadow: 0 2px 8px -1px rgba(33, 33, 37, 0.32);">Scan QR</div>
+                <a id="scan" href="/scan"   hidden></a>
+            </nav>
+        </header>
+    
+        <div class="myqr container align-items-center">
+            <div class="row download">
+                <div class="qr">
+                    {% if photo: %}
+                        <a href="{{photo}}" download>
+                            <img src="{{photo}}" alt="myqrcode" width="200">
+                        </a>
+                    {% else: %}
+                        <img src="{{ url_for('static',filename='demo.png') }}" alt="" width="200">
+                    {% endif %}
+                </div>  
+                
+                <h1 class="display-4">Scan Me!</h1>
+                <p>Get and Share your personal code for whatever reason</p><br><br>
+                <button type="submit" onclick="document.getElementById('link').click()" class="button1">
+                    <div class="icon">
+                        <svg viewBox="0 0 14 15">
+                            <line x1="5" y1="13" x2="5" y2="1"></line>
+                            <polyline id="tick" points="1 9.5 5 13.5 13 5.5"></polyline>
+                            <polyline id="normal" points="1 9.5 5 13.5 9 9.5"></polyline>
+                        </svg>
+                        <div>
+                            <svg viewBox="0 0 24 24"></svg>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>&#68;ownload</li>
+                        <li>Waiting</li>
+                        <li>Open file</li>
+                    </ul>
+                </button> 
+                
+                <a id="link" href="{{ url_for('static',filename='myqr.png') }}" download hidden></a>
+            </div>
+        </div>
+
+        <footer class="footer text-center">
+            <div class="container" style=" padding-top: 60px;">
+            <span class="text-muted">developed by <a href="">@shinkhantmaung</a></span>
+            </div>
+        </footer>  
+    </div>  
+</body>
+    <script src="{{ url_for('static',filename='button/script.js') }}"></script>
+    <script>
+        const $ = (s, o = document) => o.querySelector(s);
+        const $$ = (s, o = document) => o.querySelectorAll(s);
+
+        $$('.button1').forEach(button => {
+
+            let icon = $('.icon', button),
+                arrow = $('.icon > svg', button),
+                line = $('.icon div svg', button),
+                svgPath = new Proxy({
+                    y: null
+                }, {
+                    set(target, key, value) {
+                        target[key] = value;
+                        if(target.y !== null) {
+                            line.innerHTML = getPath(target.y, .25, null);
+                        }
+                        return true;
+                    },
+                    get(target, key) {
+                        return target[key];
+                    }
+                });
+
+            svgPath.y = 12;
+
+            button.addEventListener('click', e => {
+                if(!button.classList.contains('loading')) {
+
+                    button.classList.add('loading');
+
+                    gsap.timeline({
+                        repeat: 2
+                    }).to(svgPath, {
+                        y: 17,
+                        duration: .17,
+                        delay: .03
+                    }).to(svgPath, {
+                        y: 12,
+                        duration: .3,
+                        ease: Elastic.easeOut.config(1, .35)
+                    });
+
+                    gsap.timeline({
+                        repeat: 2,
+                        repeatDelay: .1,
+                        onComplete() {
+                            gsap.to(arrow, {
+                                '--y': -17.5,
+                                duration: .4
+                            });
+                            setTimeout(() => button.classList.add('complete'), 200);
+                        }
+                    }).to(arrow, {
+                        '--y': 9,
+                        duration: .2
+                    }).to(arrow, {
+                        '--y': -9,
+                        duration: .2
+                    });
+
+                    gsap.timeline().to(icon, {
+                        y: 4,
+                        duration: .2
+                    }).to(icon, {
+                        y: 8,
+                        duration: .2,
+                        delay: .2
+                    }).to(icon, {
+                        y: 12,
+                        duration: .2,
+                        delay: .2
+                    }).to(icon, {
+                        y: 18,
+                        duration: .2,
+                        delay: .2
+                    });
+
+                }
+                e.preventDefault();
+            });
+
+        });
+
+        function getPoint(point, i, a, smoothing) {
+            let cp = (current, previous, next, reverse) => {
+                    let p = previous || current,
+                        n = next || current,
+                        o = {
+                            length: Math.sqrt(Math.pow(n[0] - p[0], 2) + Math.pow(n[1] - p[1], 2)),
+                            angle: Math.atan2(n[1] - p[1], n[0] - p[0])
+                        },
+                        angle = o.angle + (reverse ? Math.PI : 0),
+                        length = o.length * smoothing;
+                    return [current[0] + Math.cos(angle) * length, current[1] + Math.sin(angle) * length];
+                },
+                cps = cp(a[i - 1], a[i - 2], point, false),
+                cpe = cp(point, a[i - 1], a[i + 1], true);
+            return `C ${cps[0]},${cps[1]} ${cpe[0]},${cpe[1]} ${point[0]},${point[1]}`;
+        }
+
+        function getPath(update, smoothing, pointsNew) {
+            let points = pointsNew ? pointsNew : [
+                    [2, 12],
+                    [12, update],
+                    [22, 12]
+                ],
+                d = points.reduce((acc, point, i, a) => i === 0 ? `M ${point[0]},${point[1]}` : `${acc} ${getPoint(point, i, a, smoothing)}`, '');
+            return `<path d="${d}" />`;
+    }  
+    </script>
+    <script>
+        var myVar;
+
+        function myFunction() {
+        myVar = setTimeout(showPage, 3000);
+        }
+
+        function showPage() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+        }
+    </script>
+    <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js'></script>
+</html>

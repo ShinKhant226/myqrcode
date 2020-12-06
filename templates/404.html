@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Not Found!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"
+</head>
+<style>
+html,
+body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</style>
+<body>
+    <div class="container text-center">
+        <div>
+            <img src="{{ url_for('static',filename='404.gif') }}" alt="" width="350">
+            <h3 class="text-center">OOPS! PAGE NOT FOUND</h3>
+            <p>Sorry,this page you're looking for doesn't exist.</p><br>
+            <div type="submit" onclick="document.getElementById('click').click()" class="button">Back To Main</div>
+            <a id="click" href="/" hidden></a>
+        </div>
+      </div>
+</body>
+</html>
